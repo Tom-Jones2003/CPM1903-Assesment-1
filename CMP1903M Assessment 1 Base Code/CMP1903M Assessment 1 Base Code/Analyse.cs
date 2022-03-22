@@ -14,23 +14,116 @@ namespace CMP1903M_Assessment_1_Base_Code
         //Arguments: string
         //Returns: list of integers
         //Calculates and returns an analysis of the text
-        public List<int> analyseText(string input)
+
+        public List<int> values = new List<int>();
+
+        public void analyseText(string input)
         {
+
+            
+            values.Clear();
+            
+
             //List of integers to hold the first five measurements:
-            //1. Number of sentences
-            //2. Number of vowels
-            //3. Number of consonants
-            //4. Number of upper case letters
-            //5. Number of lower case letters
-            List<int> values = new List<int>();
-            //Initialise all the values in the list to '0'
-            for(int i = 0; i<5; i++)
+
+            //1. Number of upper case letters
+            int upper = 0;
+
+            for(int i = 0; i < input.Length; i++)
             {
-                values.Add(0);
+                
+
+                bool result = false;
+                char letter = input[i];
+                
+                result = Char.IsUpper(letter);
+                
+                if(result == true)
+                {
+                    upper = upper + 1;
+                    
+                    
+                }
+                 
             }
+            values.Add(upper);
 
+            //2. Number of lower case letters
+            int lower = 0;
 
-            return values;
+            for(int i = 0; i < input.Length; i++)
+            {
+                bool result = false;
+                char letter = input[i];
+                
+                result = Char.IsLower(letter);
+                
+                if(result == true)
+                {
+                    lower++;
+                    
+                }
+                
+            }
+            values.Add(lower);
+
+            input.ToLower();
+
+            
+            //3. Number of sentences
+            int sentences = 0;
+
+            for(int i = 0; i < input.Length; i++)
+            {
+                char letter = input[i];
+                
+                if(letter == '.')
+                {
+                    sentences++;
+                    
+                }
+                
+            }
+            values.Add(sentences); 
+
+            //4. Number of vowels
+            int vowels = 0;
+
+            for(int i = 0; i < input.Length; i++)
+            {
+                char letter = input[i];
+                
+                if(letter == 'a' | letter == 'e' | letter == 'i' | letter == 'o' | letter == 'u')
+                {
+                    vowels++;
+                    
+                }
+                
+            }
+            values.Add(vowels);
+
+            //5. Number of consonants
+            int consonants = 0;
+
+            for(int i = 0; i < input.Length; i++)
+            {
+                char letter = input[i];
+                
+                if( letter == 'b' | letter == 'c' | letter == 'd' | letter == 'f' | letter == 'g' | letter == 'h' | letter == 'j'
+                  | letter == 'k' | letter == 'l' | letter == 'm' | letter == 'n' | letter == 'p' | letter == 'q' | letter == 'r'
+                  | letter == 's' | letter == 't' | letter == 'u' | letter == 'v' | letter == 'w' | letter == 'x' | letter == 'y'
+                  | letter == 'z')
+                {
+                    consonants++;
+                    
+                }
+                 
+            }
+            values.Add(consonants);
+            
+            
+            
+            
         }
     }
 }
