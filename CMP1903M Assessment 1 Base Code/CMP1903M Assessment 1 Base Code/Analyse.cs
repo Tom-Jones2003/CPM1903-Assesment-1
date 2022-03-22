@@ -87,20 +87,43 @@ namespace CMP1903M_Assessment_1_Base_Code
             values.Add(sentences); 
 
             //4. Number of vowels
-            int vowels = 0;
+            // int vowels = 0;
 
-            for(int i = 0; i < input.Length; i++)
-            {
-                char letter = input[i];
+            // for(int i = 0; i < input.Length; i++)
+            // {
+            //     char letter = input[i];
                 
-                if(letter == 'a' | letter == 'e' | letter == 'i' | letter == 'o' | letter == 'u')
-                {
-                    vowels++;
+            //     if(letter == 'a' | letter == 'e' | letter == 'i' | letter == 'o' | letter == 'u')
+            //     {
+            //         vowels++;
                     
+            //     }
+                
+            // }
+
+            Dictionary<char, int> vowels = new Dictionary<char, int>();
+
+            vowels.Add('a', 0);
+            vowels.Add('e', 0);
+            vowels.Add('i', 0);
+            vowels.Add('o', 0);
+            vowels.Add('u', 0);
+
+            foreach(char character in input)
+            {
+                if(vowels.ContainsKey(character))
+                {
+                    vowels[character] = vowels[character] + 1;
                 }
                 
             }
-            values.Add(vowels);
+
+            int sum = 0;
+            foreach(var item in vowels)
+            {
+                sum = sum + item.Value;
+            }
+            values.Add(sum);
 
             //5. Number of consonants
             int consonants = 0;
