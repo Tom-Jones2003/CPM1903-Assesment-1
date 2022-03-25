@@ -24,82 +24,11 @@ namespace CMP1903M_Assessment_1_Base_Code
             values.Clear();
             
 
-            //List of integers to hold the first five measurements:
+            //List of variables to hold the first five measurements:
 
-            //1. Number of upper case letters
             int upper = 0;
-
-            for(int i = 0; i < input.Length; i++)
-            {
-                
-
-                bool result = false;
-                char letter = input[i];
-                
-                result = Char.IsUpper(letter);
-                
-                if(result == true)
-                {
-                    upper = upper + 1;
-                    
-                    
-                }
-                 
-            }
-            values.Add(upper);
-
-            //2. Number of lower case letters
             int lower = 0;
-
-            for(int i = 0; i < input.Length; i++)
-            {
-                bool result = false;
-                char letter = input[i];
-                
-                result = Char.IsLower(letter);
-                
-                if(result == true)
-                {
-                    lower++;
-                    
-                }
-                
-            }
-            values.Add(lower);
-
-            input.ToLower();
-
-            
-            //3. Number of sentences
             int sentences = 0;
-
-            for(int i = 0; i < input.Length; i++)
-            {
-                char letter = input[i];
-                
-                if(letter == '.')
-                {
-                    sentences++;
-                    
-                }
-                
-            }
-            values.Add(sentences); 
-
-            //4. Number of vowels
-            // int vowels = 0;
-
-            // for(int i = 0; i < input.Length; i++)
-            // {
-            //     char letter = input[i];
-                
-            //     if(letter == 'a' | letter == 'e' | letter == 'i' | letter == 'o' | letter == 'u')
-            //     {
-            //         vowels++;
-                    
-            //     }
-                
-            // }
 
             Dictionary<char, int> vowels = new Dictionary<char, int>();
 
@@ -109,44 +38,51 @@ namespace CMP1903M_Assessment_1_Base_Code
             vowels.Add('o', 0);
             vowels.Add('u', 0);
 
-            foreach(char character in input)
-            {
-                if(vowels.ContainsKey(character))
-                {
-                    vowels[character] = vowels[character] + 1;
-                }
-                
-            }
-
-            int sum = 0;
-            foreach(var item in vowels)
-            {
-                sum = sum + item.Value;
-            }
-            values.Add(sum);
-
-            //5. Number of consonants
             int consonants = 0;
 
-            for(int i = 0; i < input.Length; i++)
+            int sum = 0;
+
+            for (int i = 0; i < input.Length; i++)
             {
                 char letter = input[i];
-                
-                if( letter == 'b' | letter == 'c' | letter == 'd' | letter == 'f' | letter == 'g' | letter == 'h' | letter == 'j'
-                  | letter == 'k' | letter == 'l' | letter == 'm' | letter == 'n' | letter == 'p' | letter == 'q' | letter == 'r'
-                  | letter == 's' | letter == 't' | letter == 'u' | letter == 'v' | letter == 'w' | letter == 'x' | letter == 'y'
-                  | letter == 'z')
+                char letter_lower = char.ToLower(letter);
+
+                //1. Number of upper case letters
+                if (char.IsUpper(letter))
+                {
+                    upper++;
+                }
+                //2. Number of lower case letters
+                else if (char.IsLower(letter))
+                {
+                    lower++;
+                }
+
+
+                //3. Number of sentences
+                if (letter == '.')
+                {
+                    sentences++;
+                }
+
+                //4. Number of vowels
+                if (vowels.ContainsKey(letter_lower))
+                {
+                    vowels[letter_lower]++;
+                    sum++;
+                }
+                //5. Number of consonants
+                else
                 {
                     consonants++;
-                    
                 }
-                 
             }
+
+            values.Add(upper);
+            values.Add(lower);
+            values.Add(sentences);
+            values.Add(sum);
             values.Add(consonants);
-            
-            
-            
-            
         }
     }
 }
